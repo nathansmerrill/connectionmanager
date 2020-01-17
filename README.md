@@ -4,7 +4,7 @@ A command line remote server connection and management tool
 ## Installation
 `$ git clone https://github.com/nathansmerrill/connectionmanager ~/connectionmanager`  
 `$ echo alias cm='python3 ~/connectionmanager/connectionmanager.py' > ~/.bashrc`  
-set `CONFIG_FILE` in `connectionmanager.py` to your config file location
+Set `CONFIG_FILE` in `connectionmanager.py` to your config file location
 
 ## Usage
 ```
