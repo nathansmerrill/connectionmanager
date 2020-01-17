@@ -23,7 +23,7 @@ defaultConfig = {
     'user': getpass.getuser(),
     'ip': 'localhost',
     'port': '22',
-    'key': 'id_rsa'
+    'key': None
 }
 
 if len(args['operands']) > 1:
@@ -33,7 +33,10 @@ if args['operands'][0] == 'connect':
     for option in defaultConfig:
         if option not in serverConfig:
             serverConfig[option] = defaultConfig[option]
-    os.system(serverConfig['command'] + ' ' + serverConfig['user'] + '@' + serverConfig['ip'] + ' -p ' + serverConfig['port'] + ' -i ' + '/home/nathan/.ssh/' + serverConfig['key'])
+    keyPart = ''
+    if serverConfig['key'] is not None:
+        keyPart = ' -i ' + '/home/nathan/.ssh/' + serverConfig['key']
+    os.system(serverConfig['command'] + ' ' + serverConfig['user'] + '@' + serverConfig['ip'] + ' -p ' + serverConfig['port'] + keyPart)
 
 elif args['operands'][0] == 'ping':
     os.system('ping -c 1 ' + serverConfig['ip'])
