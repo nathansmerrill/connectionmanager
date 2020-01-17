@@ -93,6 +93,6 @@ class Parser:
         if (self.maxOperands is not None) and (len(self.outputArgs['operands']) > self.maxOperands):
             raise ValueError('This program takes at most ' + str(self.maxOperands) + ' command line operand(s)')
         for i in self.constraints:
-            if self.outputArgs['operands'][i] not in self.constraints[i]:
+            if (len(self.outputArgs['operands']) >= i + 1) and (self.outputArgs['operands'][i] not in self.constraints[i]):
                 raise ValueError('Operand #' + str(i) + ' must be one of these: ' + str(self.constraints[i]))
         return self.outputArgs
