@@ -23,8 +23,8 @@ mySecondServer:
     port: '2000'
 ```
 ## All config values
-`command`   - defaults to `ssh`
-`user`      - defaults to the current user
-`ip`        - defaults to `localhost`
-`port`      - defaults to `22`
-`key`       - defaults to no key
+`command`   - defaults to `ssh`  
+`user`      - defaults to the current user  
+`ip`        - defaults to `localhost`  
+`port`      - defaults to `22`  
+`key`       - defaults to no key  
