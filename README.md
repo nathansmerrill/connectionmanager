@@ -6,13 +6,6 @@ A command line remote server connection and management tool
 `$ echo alias cm='python3 ~/connectionmanager/connectionmanager.py' > ~/.bashrc`  
 Set `CONFIG_FILE` in `connectionmanager.py` to your config file location
 
-## Usage
-```
-$ cm connect myServer
-$ cm ping myServer2
-$ cm edit
-```
-
 ## Config file
 ```yaml
 myServer:
@@ -22,7 +15,15 @@ myServer:
 mySecondServer:
     ip: 'yyy.yyy.yyy.yyy'
     port: '2000'
+
 ```
+## Usage
+```
+$ cm connect myServer
+$ cm ping mySecondServer
+$ cm edit
+```
+
 ## All config values
 `command`   - defaults to `ssh`  
 `user`      - defaults to the current user  
