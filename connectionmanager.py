@@ -1,5 +1,5 @@
 # Author: Nathan Merrill
-import cliparse, yaml
+import cliparse, yaml, os, getpass
 
 CONFIG_FILE = '/home/nathan/.cmrc.yaml'
 
@@ -17,3 +17,20 @@ parser.setOperandConstraints({
 })
 args = parser.parseArgs()
 
+defaultConfig = {
+    'command': 'ssh',
+    'user': getpass.getuser(),
+    'ip': 'localhost',
+    'port': '22',
+    'key': 'id_rsa'
+}
+
+if args['operands'][0] == 'edit':
+    os.system('nvim ' + CONFIG_FILE)
+
+elif args['operands'][0] == 'connect':
+    serverConfig = config[args['operands'][1]]
+    for option in defaultConfig:
+        if option not in serverConfig:
+            serverConfig[option] = defaultConfig[option]
+    os.system(serverConfig['command'] + ' ' + serverConfig['user'] + '@' + serverConfig['ip'] + ' -p ' + serverConfig['port'])
