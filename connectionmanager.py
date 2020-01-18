@@ -27,7 +27,8 @@ defaultConfig = {
     'user': getpass.getuser(),
     'ip': 'localhost',
     'port': '22',
-    'key': None
+    'key': None,
+    'justRunCommand': False
 }
 
 if (args['operands'][0] == 'edit') or (args['operands'][0] == 'e'):
@@ -53,5 +54,8 @@ if (args['operands'][0] == 'connect') or (args['operands'][0] == 'c'):
     sys.exit()
 
 if (args['operands'][0] == 'scp') or (args['operands'][0] == 's'):
-    os.system('scp' + keyPart + args['operands'][2] + ' scp://' + userIpPort + '/' + args['operands'][3])
+    if serverConfig['justRunCommand']:
+        os.system(serverConfig['command'])
+    else:
+        os.system('scp' + keyPart + args['operands'][2] + ' scp://' + userIpPort + '/' + args['operands'][3])
     sys.exit()
