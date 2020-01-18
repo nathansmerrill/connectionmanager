@@ -1,5 +1,5 @@
 # Author: Nathan Merrill
-import cliparse, yaml, os, getpass, sys
+import cliparse, yaml, os, getpass
 
 CONFIG_FILE = '/home/nathan/.cmrc.yaml'
 
@@ -22,6 +22,8 @@ parser.setOperandConstraints({
 })
 args = parser.parseArgs()
 
+command = args['operands'][0]
+
 defaultConfig = {
     'command': 'ssh',
     'user': getpass.getuser(),
@@ -31,31 +33,33 @@ defaultConfig = {
     'justRunCommand': False
 }
 
-if (args['operands'][0] == 'edit') or (args['operands'][0] == 'e'):
+if (command == 'edit') or (command == 'e'):
     os.system('nvim ' + CONFIG_FILE)
-    sys.exit()
 
-serverConfig = config[args['operands'][1]]
+try:
+    serverName = args['operands'][1]
+except IndexError:
+    raise ValueError('The ' + command + ' command needs takes the server to use')
+
+serverConfig = config[serverName]
 for option in defaultConfig:
     if option not in serverConfig:
         serverConfig[option] = defaultConfig[option]
 
-if (args['operands'][0] == 'ping') or (args['operands'][0] == 'p'):
+
+if (command == 'ping') or (command == 'p'):
     os.system('ping -c 1 ' + serverConfig['ip'])
-    sys.exit()
 
 keyPart = ''
 if serverConfig['key'] is not None:
     keyPart = ' -i ' + '/home/nathan/.ssh/' + serverConfig['key'] + ' '
 userIpPort = serverConfig['user'] + '@' + serverConfig['ip'] + ':' + serverConfig['port']
 
-if (args['operands'][0] == 'connect') or (args['operands'][0] == 'c'):
+if (command == 'connect') or (command == 'c'):
     os.system(serverConfig['command'] + keyPart + ' ssh://' + userIpPort)
-    sys.exit()
 
-if (args['operands'][0] == 'scp') or (args['operands'][0] == 's'):
+if (command == 'scp') or (command == 's'):
     if serverConfig['justRunCommand']:
         os.system(serverConfig['command'])
     else:
         os.system('scp' + keyPart + args['operands'][2] + ' scp://' + userIpPort + '/' + args['operands'][3])
-    sys.exit()
