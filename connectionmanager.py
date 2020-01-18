@@ -1,5 +1,5 @@
 # Author: Nathan Merrill
-import cliparse, yaml, os, getpass
+import cliparse, yaml, os, getpass, sys
 
 CONFIG_FILE = '/home/nathan/.cmrc.yaml'
 
@@ -30,20 +30,28 @@ defaultConfig = {
     'key': None
 }
 
-if len(args['operands']) > 1:
-    serverConfig = config[args['operands'][1]]
+if (args['operands'][0] == 'edit') or (args['operands'][0] == 'e'):
+    os.system('nvim ' + CONFIG_FILE)
+    sys.exit()
+
+serverConfig = config[args['operands'][1]]
+for option in defaultConfig:
+    if option not in serverConfig:
+        serverConfig[option] = defaultConfig[option]
+
+if (args['operands'][0] == 'ping') or (args['operands'][0] == 'p'):
+    os.system('ping -c 1 ' + serverConfig['ip'])
+    sys.exit()
+
+keyPart = ''
+if serverConfig['key'] is not None:
+    keyPart = ' -i ' + '/home/nathan/.ssh/' + serverConfig['key'] + ' '
+userIpPort = serverConfig['user'] + '@' + serverConfig['ip'] + ':' + serverConfig['port']
 
 if (args['operands'][0] == 'connect') or (args['operands'][0] == 'c'):
-    for option in defaultConfig:
-        if option not in serverConfig:
-            serverConfig[option] = defaultConfig[option]
-    keyPart = ''
-    if serverConfig['key'] is not None:
-        keyPart = ' -i ' + '/home/nathan/.ssh/' + serverConfig['key']
-    os.system(serverConfig['command'] + ' ' + serverConfig['user'] + '@' + serverConfig['ip'] + ' -p ' + serverConfig['port'] + keyPart)
+    os.system(serverConfig['command'] + keyPart + ' ssh://' + userIpPort)
+    sys.exit()
 
-elif (args['operands'][0] == 'ping') or (args['operands'][0] == 'p'):
-    os.system('ping -c 1 ' + serverConfig['ip'])
-
-elif (args['operands'][0] == 'edit') or (args['operands'][0] == 'e'):
-    os.system('nvim ' + CONFIG_FILE)
+if (args['operands'][0] == 'scp') or (args['operands'][0] == 's'):
+    os.system('scp' + keyPart + args['operands'][2] + ' scp://' + userIpPort + '/' + args['operands'][3])
+    sys.exit()
