@@ -1,5 +1,5 @@
 # Author: Nathan Merrill
-import cliparse, yaml, os, getpass
+import cliparse, yaml, os, getpass, sys
 
 CONFIG_FILE = '/home/nathan/.cmrc.yaml'
 
@@ -30,11 +30,13 @@ defaultConfig = {
     'ip': 'localhost',
     'port': '22',
     'key': None,
-    'justRunCommand': False
+    'justRunCommand': False,
+    'jump': None
 }
 
 if (command == 'edit') or (command == 'e'):
     os.system('nvim ' + CONFIG_FILE)
+    sys.exit()
 
 try:
     serverName = args['operands'][1]
@@ -51,12 +53,20 @@ if (command == 'ping') or (command == 'p'):
     os.system('ping -c 1 ' + serverConfig['ip'])
 
 keyPart = ''
+jumpPart = ''
 if serverConfig['key'] is not None:
     keyPart = ' -i ' + '/home/nathan/.ssh/' + serverConfig['key'] + ' '
+if serverConfig['jump'] is not None:
+    jumpServerConfig = config[serverConfig['jump']]
+    for option in defaultConfig:
+        if option not in jumpServerConfig:
+            jumpServerConfig[option] = defaultConfig[option]
+    jumpUserIpPort = jumpServerConfig['user'] + '@' + jumpServerConfig['ip'] + ':' + jumpServerConfig['port']
+    jumpPart = ' -J ' + jumpUserIpPort + ' '
 userIpPort = serverConfig['user'] + '@' + serverConfig['ip'] + ':' + serverConfig['port']
 
 if (command == 'connect') or (command == 'c'):
-    os.system(serverConfig['command'] + keyPart + ' ssh://' + userIpPort)
+    os.system(serverConfig['command'] + keyPart + jumpPart + ' ssh://' + userIpPort)
 
 if (command == 'scp') or (command == 's'):
     if serverConfig['justRunCommand']:
