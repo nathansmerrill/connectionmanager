@@ -11,9 +11,13 @@ parser.setRequiredOperands(1)
 parser.setOperandConstraints({
     0: [
         'connect',
+        'c',
         'scp',
+        's',
         'ping',
-        'edit'
+        'p',
+        'edit',
+        'e'
     ]
 })
 args = parser.parseArgs()
@@ -29,7 +33,7 @@ defaultConfig = {
 if len(args['operands']) > 1:
     serverConfig = config[args['operands'][1]]
 
-if args['operands'][0] == 'connect':
+if (args['operands'][0] == 'connect') or (args['operands'][0] == 'c'):
     for option in defaultConfig:
         if option not in serverConfig:
             serverConfig[option] = defaultConfig[option]
@@ -38,8 +42,8 @@ if args['operands'][0] == 'connect':
         keyPart = ' -i ' + '/home/nathan/.ssh/' + serverConfig['key']
     os.system(serverConfig['command'] + ' ' + serverConfig['user'] + '@' + serverConfig['ip'] + ' -p ' + serverConfig['port'] + keyPart)
 
-elif args['operands'][0] == 'ping':
+elif (args['operands'][0] == 'ping') or (args['operands'][0] == 'p'):
     os.system('ping -c 1 ' + serverConfig['ip'])
 
-elif args['operands'][0] == 'edit':
+elif (args['operands'][0] == 'edit') or (args['operands'][0] == 'e'):
     os.system('nvim ' + CONFIG_FILE)
