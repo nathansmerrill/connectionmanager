@@ -1,12 +1,12 @@
 # Connection Manager
 A command line remote server connection and management tool
 
-## Installation
+# Installation
 `$ git clone https://github.com/nathansmerrill/connectionmanager ~/connectionmanager`  
 `$ echo alias cm='python3 ~/connectionmanager/connectionmanager.py' > ~/.bashrc`  
 Set `CONFIG_FILE` in `connectionmanager.py` to your config file location
 
-## Config file
+# Config file
 ```yaml
 myServer:
     ip: 'xxx.xxx.xxx.xxx'
@@ -26,18 +26,32 @@ myThirdServer:
     justRunCommand: True
 
 ```
-## Usage
+# Usage
 ```
 $ cm connect myServer
 $ cm ping mySecondServer
 $ cm edit
 ```
 
-## All config values
-`command`       - defaults to `ssh`  
-`user`          - defaults to the current user  
-`ip`            - defaults to `localhost`  
-`port`          - defaults to `22`  
-`key`           - defaults to no key  
-`jump`          - defaults to nothing  
-`justRunCommand`- default to False
+# All config values
+## `command`
+The command to run   
+Defaults to `ssh`
+## `user`
+The user to log in as  
+Defaults to the current user  
+## `ip`
+The IP to connect to          
+Defaults to `localhost`  
+## `port`
+The port to connect to          
+Defaults to `22`  
+## `key`
+The ssh key to use      
+Defaults to no key  
+## `jump`
+A server to jump ssh through
+Defaults to nothing  
+## `justRunCommand`
+Just runs `command` specified without adding the ip, port, etc  
+Default to `False`
