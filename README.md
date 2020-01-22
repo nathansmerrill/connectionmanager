@@ -34,24 +34,24 @@ $ cm edit
 ```
 
 # All config values
-## `command`
+### `command`
 The command to run   
 Defaults to `ssh`
-## `user`
+### `user`
 The user to log in as  
 Defaults to the current user  
-## `ip`
+### `ip`
 The IP to connect to          
 Defaults to `localhost`  
-## `port`
+### `port`
 The port to connect to          
 Defaults to `22`  
-## `key`
+### `key`
 The ssh key to use      
 Defaults to no key  
-## `jump`
+### `jump`
 A server to jump ssh through
 Defaults to nothing  
-## `justRunCommand`
+### `justRunCommand`
 Just runs `command` specified without adding the ip, port, etc  
 Default to `False`
