@@ -12,13 +12,15 @@ myServer:
     ip: 'xxx.xxx.xxx.xxx'
     user: 'myUser'
 
+# The jump option takes the server to jump ssh through
 mySecondServer:
     ip: 'yyy.yyy.yyy.yyy'
     port: '2000'
     key: 'mySecondServerKey'
+    jump: 'myServer'
 
 # The ip isn't needed when you specify a full command but is needed to ping the server
-myThirdServer:
+myThird=Server:
     ip: 'zzz.zzz.zzz.zzz'
     command: 'vncviewer zzz.zzz.zzz.zzz:0'
     justRunCommand: True
