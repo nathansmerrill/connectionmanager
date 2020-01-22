@@ -39,4 +39,5 @@ $ cm edit
 `ip`            - defaults to `localhost`  
 `port`          - defaults to `22`  
 `key`           - defaults to no key  
+`jump`          - defaults to nothing  
 `justRunCommand`- default to False
