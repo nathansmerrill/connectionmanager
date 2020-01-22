@@ -20,7 +20,7 @@ mySecondServer:
     jump: 'myServer'
 
 # The ip isn't needed when you specify a full command but is needed to ping the server
-myThird=Server:
+myThirdServer:
     ip: 'zzz.zzz.zzz.zzz'
     command: 'vncviewer zzz.zzz.zzz.zzz:0'
     justRunCommand: True
