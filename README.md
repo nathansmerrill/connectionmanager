@@ -27,11 +27,16 @@ myThirdServer:
 
 ```
 # Usage
+There are long and one letter forms for every command
 ```
 $ cm connect myServer
+$ cm c myServer
 $ cm execute mySecondServer "echo hi > test.txt"
+$ cm x mySecondServer "echo hi > test.txt"
 $ cm ping myThirdServer
+$ cm p myThirdServer
 $ cm edit
+$ cm e
 ```
 
 # All config values
