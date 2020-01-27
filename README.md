@@ -29,7 +29,8 @@ myThirdServer:
 # Usage
 ```
 $ cm connect myServer
-$ cm ping mySecondServer
+$ cm execute mySecondServer "echo hi > test.txt"
+$ cm ping myThirdServer
 $ cm edit
 ```
 
