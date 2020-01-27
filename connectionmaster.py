@@ -16,6 +16,8 @@ parser.setOperandConstraints({
         's',
         'ping',
         'p',
+        'execute',
+        'x',
         'edit',
         'e'
     ]
@@ -67,6 +69,9 @@ userIpPort = serverConfig['user'] + '@' + serverConfig['ip'] + ':' + serverConfi
 
 if (command == 'connect') or (command == 'c'):
     os.system(serverConfig['command'] + keyPart + jumpPart + ' ssh://' + userIpPort)
+
+if (command == 'execute') or (command == 'x'):
+    os.system(serverConfig['command'] + keyPart + jumpPart + ' ssh://' + userIpPort + ' "' + args['operands'][2] + '"')
 
 if (command == 'scp') or (command == 's'):
     if serverConfig['justRunCommand']:
