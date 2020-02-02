@@ -25,7 +25,7 @@ args = parse(
         ], ['s']),
         Command('ping', [
             serverArg,
-        ]),
+        ], ['p']),
         Command('edit', aliases=['e'])
     ]
 )
