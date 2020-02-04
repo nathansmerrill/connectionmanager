@@ -72,7 +72,4 @@ if args.command == 'execute':
     os.system(serverConfig['command'] + keyPart + jumpPart + ' ssh://' + userIpPort + ' "' + args.commandArgs['command'] + '"')
 
 if args.command == 'scp':
-    if serverConfig['justRunCommand']:
-        os.system(serverConfig['command'])
-    else:
-        os.system('scp' + keyPart + args.commandArgs['localfile'] + ' scp://' + userIpPort + '/' + args.commandArgs['remotefile'])
+    os.system('scp ' + keyPart + args.commandArgs['localfile'] + ' scp://' + userIpPort + '/' + args.commandArgs['remotefile'])
