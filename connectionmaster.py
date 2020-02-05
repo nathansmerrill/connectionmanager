@@ -27,7 +27,8 @@ args = parse(
             serverArg,
         ], ['p']),
         Command('edit', aliases=['e'])
-    ]
+    ],
+    commandRequired=True
 )
 
 defaultConfig = {
