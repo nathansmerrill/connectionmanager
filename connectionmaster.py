@@ -26,6 +26,9 @@ args = parse(
         Command('ping', [
             serverArg,
         ], ['p']),
+        Command('trace', [
+            serverArg
+        ], ['t']),
         Command('edit', aliases=['e'])
     ],
     commandRequired=True
@@ -52,6 +55,9 @@ for option in defaultConfig:
 
 if args.command == 'ping':
     os.system('ping -c 1 ' + serverConfig['ip'])
+
+if args.command == 'trace':
+    os.system('traceroute ' + serverConfig['ip'])
 
 keyPart = ''
 jumpPart = ''
