@@ -9,7 +9,7 @@ with open(CONFIG_FILE, 'r') as stream:
     config = yaml.safe_load(stream)
 
 serverArg = CommandArgument('server', list(config.keys()))
-args = parse(
+args = Parser(
     commands=[
         Command('connect', [
             serverArg
@@ -32,7 +32,7 @@ args = parse(
         Command('edit', aliases=['e'])
     ],
     commandRequired=True
-)
+).parse()
 
 defaultConfig = {
     'command': 'ssh',
