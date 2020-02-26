@@ -1,6 +1,7 @@
 README.md
 setup.py
 connectionmaster/__init__.py
+connectionmaster/__main__.py
 connectionmaster.egg-info/PKG-INFO
 connectionmaster.egg-info/SOURCES.txt
 connectionmaster.egg-info/dependency_links.txt

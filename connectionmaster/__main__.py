@@ -1,11 +1,10 @@
 # Author: Nathan Merrill
 
 from blinkparse import *
-import yaml, os, getpass, sys
+from pathlib import Path
+import yaml, os, sys, getpass
 
-CONFIG_FILE = '/home/nathan/.cmrc.yaml'
-
-with open(CONFIG_FILE, 'r') as stream:
+with open(os.path.join(Path.home(), '.cmrc.yaml'), 'r') as stream:
     config = yaml.safe_load(stream)
 
 serverArg = CommandArgument('server', list(config.keys()))

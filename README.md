@@ -3,11 +3,10 @@ A command line remote server connection and management tool
 
 # Installation
 ```
-$ git clone https://github.com/nathansmerrill/connectionmaster ~/connectionmaster
-$ pip install --user -r ~/connectionmaster/requirements.txt
-$ echo alias cm='python3 ~/connectionmaster/connectionmaster.py' > ~/.bashrc
+pip install connectionmaster
+$ echo alias cm='python3 -m connectionmaster' > ~/.bashrc
 ```
-Set `CONFIG_FILE` in `connectionmaster.py` to your config file location. The default is `/home/nathan/.cmrc.yaml`
+The config file is `~/.cmrc.yaml`
 
 # Usage
 There are long and one letter forms for every command
