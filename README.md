@@ -59,7 +59,7 @@ Defaults to `22`
 The ssh key to use      
 Defaults to no key  
 ### `jump`
-A server to jump ssh through
+A server to jump ssh through  
 Defaults to nothing  
 ### `justRunCommand`
 Just runs `command` specified without adding the ip, port, etc  
