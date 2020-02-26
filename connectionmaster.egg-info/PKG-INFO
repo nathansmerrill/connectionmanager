@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: connectionmaster
-Version: 0.0.2
+Version: 0.0.3
 Summary: A python utility for remote server management
 Home-page: https://github.com/nathansmerrill/connectionmaster
 Author: Nathan Merrill
@@ -11,11 +11,10 @@ Description: # Connection Master
         
         # Installation
         ```
-        $ git clone https://github.com/nathansmerrill/connectionmaster ~/connectionmaster
-        $ pip install --user -r ~/connectionmaster/requirements.txt
-        $ echo alias cm='python3 ~/connectionmaster/connectionmaster.py' > ~/.bashrc
+        pip install connectionmaster
+        $ echo alias cm='python3 -m connectionmaster' > ~/.bashrc
         ```
-        Set `CONFIG_FILE` in `connectionmaster.py` to your config file location. The default is `/home/nathan/.cmrc.yaml`
+        The config file is `~/.cmrc.yaml`
         
         # Usage
         There are long and one letter forms for every command

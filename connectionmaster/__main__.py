@@ -4,7 +4,9 @@ from blinkparse import *
 from pathlib import Path
 import yaml, os, sys, getpass
 
-with open(os.path.join(Path.home(), '.cmrc.yaml'), 'r') as stream:
+CONFIG_FILE = os.path.join(Path.home(), '.cmrc.yaml')
+
+with open(CONFIG_FILE, 'r') as stream:
     config = yaml.safe_load(stream)
 
 serverArg = CommandArgument('server', list(config.keys()))
