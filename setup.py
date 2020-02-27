@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="connectionmaster",
-    version="0.0.4",
+    version="0.0.5",
     author="Nathan Merrill",
     author_email="mathiscool3000@gmail.com",
     description="A python utility for remote server management",

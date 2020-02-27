@@ -39,7 +39,6 @@ myThirdServer:
     ip: 'zzz.zzz.zzz.zzz'
     command: 'vncviewer zzz.zzz.zzz.zzz:0'
     justRunCommand: True
-
 ```
 
 # Config values
@@ -48,7 +47,7 @@ myThirdServer:
 | `command` | The command to run | `ssh` |
 | `user` | The user to log in as | The current user |
 | `ip` | The IP to connect to | `localhost` |
-| `port` | The por to connect to | `22` |
+| `port` | The port to connect to | `22` |
 | `key` | The ssh key to use | No key |
 | `jump` | A server to jump ssh through | Nothing |
 | `justRunCommand` | Just runs `command` without adding ip, port, etc | `False` |
