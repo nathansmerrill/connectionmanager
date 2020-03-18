@@ -48,7 +48,10 @@ defaultConfig = {
 }
 
 if args.command == 'edit':
-    os.system('nvim ' + CONFIG_FILE)
+    EDITOR = os.getenv('EDITOR')
+    if EDITOR is None:
+        EDITOR = 'vim'
+    os.system(f'{EDITOR} {CONFIG_FILE}')
     sys.exit()
 
 serverConfig = config[args.commandArgs['server']]

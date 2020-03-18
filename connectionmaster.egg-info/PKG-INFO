@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: connectionmaster
-Version: 0.0.5
+Version: 0.0.6
 Summary: A python utility for remote server management
 Home-page: https://github.com/nathansmerrill/connectionmaster
 Author: Nathan Merrill
