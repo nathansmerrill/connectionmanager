@@ -2,10 +2,12 @@
 A command line remote server connection and management tool
 
 # Installation
-```
-pip install connectionmaster
-$ echo alias cm='python3 -m connectionmaster' > ~/.bashrc
-```
+`$ pip install connectionmaster`  
+MacOS  
+`$ echo alias cm='python3 -m connectionmaster' > ~/.bash_profile`  
+Linux  
+`$ echo alias cm='python3 -m connectionmaster' > ~/.bashrc`
+
 The config file is `~/.cmrc.yaml`
 
 # Usage
@@ -15,8 +17,10 @@ $ cm connect myServer
 $ cm c myServer
 $ cm execute mySecondServer "echo hi > test.txt"
 $ cm x mySecondServer "echo hi > test.txt"
-$ cm ping myThirdServer
-$ cm p myThirdServer
+$ cm scp myThirdServer localfile remotefile
+$ cm scp myThirdServer localfile remotefile
+$ cm ping myFourthServer
+$ cm p myFourthServer
 $ cm edit
 $ cm e
 ```

@@ -60,29 +60,29 @@ for option in defaultConfig:
         serverConfig[option] = defaultConfig[option]
 
 if args.command == 'ping':
-    os.system('ping -c 1 ' + serverConfig['ip'])
+    os.system(f'ping -c 1 {serverConfig["ip"]}')
 
 if args.command == 'trace':
-    os.system('traceroute ' + serverConfig['ip'])
+    os.system(f'traceroute {serverConfig["ip"]}')
 
 keyPart = ''
 jumpPart = ''
 if serverConfig['key'] is not None:
-    keyPart = ' -i ' + os.path.join(HOME_PATH, '.ssh', serverConfig['key']) + ' '
+    keyPart = f' -i {os.path.join(HOME_PATH, ".ssh", serverConfig["key"])} '
 if serverConfig['jump'] is not None:
     jumpServerConfig = config[serverConfig['jump']]
     for option in defaultConfig:
         if option not in jumpServerConfig:
             jumpServerConfig[option] = defaultConfig[option]
-    jumpUserIpPort = jumpServerConfig['user'] + '@' + jumpServerConfig['ip'] + ':' + jumpServerConfig['port']
-    jumpPart = ' -J ' + jumpUserIpPort + ' '
-userIpPort = serverConfig['user'] + '@' + serverConfig['ip'] + ':' + serverConfig['port']
+    jumpUserIpPort = f'{jumpServerConfig["user"]}@{jumpServerConfig["ip"]}:{jumpServerConfig["port"]}'
+    jumpPart = f' -J {jumpUserIpPort} '
+userIpPort = f'{serverConfig["user"]}@{serverConfig["ip"]}:{serverConfig["port"]}'
 
 if args.command == 'connect':
-    os.system(serverConfig['command'] + keyPart + jumpPart + ' ssh://' + userIpPort)
+    os.system(f'{serverConfig["command"]}{keyPart}{jumpPart} ssh://{userIpPort}')
 
 if args.command == 'execute':
-    os.system(serverConfig['command'] + keyPart + jumpPart + ' ssh://' + userIpPort + ' "' + args.commandArgs['command'] + '"')
+    os.system(f'{serverConfig["command"]}{keyPart}{jumpPart} ssh://{userIpPort} \"{args.commandArgs["command"]}\"')
 
 if args.command == 'scp':
-    os.system('scp ' + keyPart + args.commandArgs['localfile'] + ' scp://' + userIpPort + '/' + args.commandArgs['remotefile'])
+    os.system(f'scp {keyPart}{args.commandArgs["localfile"]} scp://{userIpPort}/{args.commandArgs["remotefile"]}')
