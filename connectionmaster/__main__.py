@@ -4,7 +4,9 @@ from blinkparse import *
 from pathlib import Path
 import yaml, os, sys, getpass
 
-CONFIG_FILE = os.path.join(Path.home(), '.cmrc.yaml')
+HOME_PATH = Path.home()
+
+CONFIG_FILE = os.path.join(HOME_PATH, '.cmrc.yaml')
 
 with open(CONFIG_FILE, 'r') as stream:
     config = yaml.safe_load(stream)
@@ -63,7 +65,7 @@ if args.command == 'trace':
 keyPart = ''
 jumpPart = ''
 if serverConfig['key'] is not None:
-    keyPart = ' -i ' + '/home/nathan/.ssh/' + serverConfig['key'] + ' '
+    keyPart = ' -i ' + os.path.join(HOME_PATH, '.ssh', serverConfig['key']) + ' '
 if serverConfig['jump'] is not None:
     jumpServerConfig = config[serverConfig['jump']]
     for option in defaultConfig:
