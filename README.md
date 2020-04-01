@@ -18,7 +18,7 @@ $ cm c myServer
 $ cm execute mySecondServer "echo hi > test.txt"
 $ cm x mySecondServer "echo hi > test.txt"
 $ cm scp myThirdServer localfile remotefile
-$ cm scp myThirdServer localfile remotefile
+$ cm s myThirdServer localfile remotefile
 $ cm ping myFourthServer
 $ cm p myFourthServer
 $ cm edit
